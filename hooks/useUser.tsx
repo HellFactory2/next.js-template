@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSessionStorage } from './useSessionStorage';
 
 export interface User {
-  name: string;
+  username: string;
 }
 
 export const useUser = () => {
@@ -11,8 +11,10 @@ export const useUser = () => {
   useEffect(() => {
     if (user) return;
 
-    setUser({ name: 'adam' });
-    console.log('user data set!');
+    // fetch user data
+    setUser({
+      username: 'username',
+    });
   }, []);
 
   return {
