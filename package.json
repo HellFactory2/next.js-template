@@ -21,7 +21,6 @@
   },
   "devDependencies": {
     "@types/express": "latest",
-    "@types/next": "latest",
     "@types/node": "latest",
     "@types/nprogress": "latest",
     "@types/react": "latest",
