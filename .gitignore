@@ -35,3 +35,7 @@ yarn-error.log*
 
 # log files
 **/*.log
+
+# lock files
+**/yarn.lock
+**/package-lock.json
