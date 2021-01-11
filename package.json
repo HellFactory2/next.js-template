@@ -20,9 +20,8 @@
     "styled-components": "latest"
   },
   "devDependencies": {
-    "react": "latest",
-    "react-dom": "latest",
     "@types/express": "latest",
+    "@types/next": "latest",
     "@types/node": "latest",
     "@types/nprogress": "latest",
     "@types/react": "latest",
@@ -33,6 +32,8 @@
     "cross-env": "latest",
     "nodemon": "latest",
     "postcss": "latest",
+    "react": "latest",
+    "react-dom": "latest",
     "sass": "latest",
     "tailwindcss": "latest",
     "ts-node": "latest",
