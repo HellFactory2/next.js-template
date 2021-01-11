@@ -1,8 +1,12 @@
 import { useEffect } from 'react';
-import { useLocalStorage } from './useLocalStorage';
+import { useSessionStorage } from './useSessionStorage';
+
+export interface User {
+  name: string;
+}
 
 export const useUser = () => {
-  const [user, setUser] = useLocalStorage<any>('user', undefined);
+  const [user, setUser] = useSessionStorage<User | undefined>('user', undefined);
 
   useEffect(() => {
     if (user) return;
