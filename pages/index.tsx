@@ -3,9 +3,9 @@ import { NextPage } from 'next';
 const IndexPage: NextPage = () => {
   return (
     <main>
-      <div className="bg-white dark:bg-gray-800 max-w-screen mx-auto py-6 sm:px-6 lg:px-8 h-screen">
-        <div className="px-4 py-6 sm:px-0 h-full">
-          <div className="border-4 border-dashed border-gray-200 dark:white rounded-lg h-full flex justify-center items-center text-lg">
+      <div className="h-screen w-screen bg-white dark:bg-gray-700">
+        <div className="h-full px-5 py-8">
+          <div className="h-full max-w-sm flex justify-center items-center m-auto border-2 border-dashed rounded-lg text-lg select-none border-gray-300 dark:border-gray-500 dark:text-gray-200">
             Happy Coding!
           </div>
         </div>
