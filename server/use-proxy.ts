@@ -6,7 +6,7 @@ interface UseProxyConfig {
 }
 
 const config: UseProxyConfig = {
-  '/api': {
+  '/api/': {
     target: process.env.API_URL || '',
     pathRewrite: { '^/api': '' },
     changeOrigin: true,
