@@ -34,3 +34,5 @@ export default function (server: Express) {
     server.use(path, proxy);
   }
 }
+
+export const ProxyConfig = config;
