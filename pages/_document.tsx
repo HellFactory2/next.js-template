@@ -1,43 +1,54 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { NextComponentType } from 'next';
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+  DocumentInitialProps,
+  DocumentProps,
+} from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
-class _Document extends Document {
-  static async getInitialProps(ctx: any) {
-    const sheet = new ServerStyleSheet();
-    const originalRenderPage = ctx.renderPage;
+const _Document: NextComponentType<DocumentContext, DocumentInitialProps, DocumentProps> & {
+  renderDocument: Function;
+} = () => {
+  return (
+    <Html className="h-auto min-h-screen">
+      <Head />
+      <body className="overflow-x-hidden overflow-y-auto">
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  );
+};
 
-    try {
-      ctx.renderPage = () =>
-        originalRenderPage({
-          enhanceApp: (App: any) => (props: any) => sheet.collectStyles(<App {...props} />),
-        });
+_Document.getInitialProps = async ctx => {
+  const sheet = new ServerStyleSheet();
+  const originalRenderPage = ctx.renderPage;
 
-      const initialProps = await Document.getInitialProps(ctx);
-      return {
-        ...initialProps,
-        styles: (
-          <>
-            {initialProps.styles}
-            {sheet.getStyleElement()}
-          </>
-        ),
-      };
-    } finally {
-      sheet.seal();
-    }
+  try {
+    ctx.renderPage = () =>
+      originalRenderPage({
+        enhanceApp: (App: any) => (props: any) => sheet.collectStyles(<App {...props} />),
+      });
+
+    const initialProps = await Document.getInitialProps(ctx);
+    return {
+      ...initialProps,
+      styles: (
+        <>
+          {initialProps.styles}
+          {sheet.getStyleElement()}
+        </>
+      ),
+    };
+  } finally {
+    sheet.seal();
   }
+};
 
-  render() {
-    return (
-      <Html>
-        <Head />
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    );
-  }
-}
+_Document.renderDocument = Document.renderDocument;
 
 export default _Document;
