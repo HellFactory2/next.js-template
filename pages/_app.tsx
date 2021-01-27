@@ -6,6 +6,7 @@ import { AppContext, AppInitialProps, AppProps } from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
 import nprogress from 'nprogress';
+import { RecoilRoot } from 'recoil';
 import Title from 'components/Layout/Title';
 
 Router.events.on('routeChangeStart', () => {
@@ -32,7 +33,9 @@ const _App: NextComponentType<AppContext, AppInitialProps, AppProps> = props => 
           rel="stylesheet"
         />
       </Head>
-      <Component {...pageProps} />
+      <RecoilRoot>
+        <Component {...pageProps} />
+      </RecoilRoot>
     </>
   );
 };
