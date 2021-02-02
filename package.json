@@ -17,7 +17,7 @@
     "http-proxy-middleware": "latest",
     "next": "latest",
     "nprogress": "latest",
-    "recoil": "^0.1.2",
+    "recoil": "latest",
     "styled-components": "latest"
   },
   "devDependencies": {
