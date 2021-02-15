@@ -7,7 +7,7 @@
     "build": "next build && tsc --project tsconfig.server.json",
     "build:docker": "docker build -t next.js-template .",
     "start": "cross-env NODE_ENV=production node dist/index.js",
-    "start:docker": "docker run -d -p 3000:3000 -e NODE_ENV=production --name next.js-template next.js-template",
+    "start:docker": "docker run -d -p 3000:3000 --env-file .env -e NODE_ENV=production --name next.js-template next.js-template",
     "stop:docker": "docker rm -f next.js-template && docker rmi next.js-template"
   },
   "dependencies": {
