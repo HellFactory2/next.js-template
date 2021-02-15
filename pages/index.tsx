@@ -21,10 +21,10 @@ const IndexPage: NextPage = () => {
             <div>Happy Coding!</div>
             <div className="my-2">{counter}</div>
             <div>
-              <button className="px-2 mr-1 border rounded" onClick={handleIncrease}>
+              <button className="px-2 mr-1 border rounded bg-green-400" onClick={handleIncrease}>
                 Increase
               </button>
-              <button className="px-2 border rounded" onClick={handleReset}>
+              <button className="px-2 border rounded bg-yellow-400" onClick={handleReset}>
                 Reset
               </button>
             </div>
