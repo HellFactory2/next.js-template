@@ -1,13 +1,13 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
-export function useLocalStorage<T = unknown>(
+export function useSessionStorage<T = unknown>(
   key: string,
   defaultValue: T
 ): [T, Dispatch<SetStateAction<T>>] {
   const [value, setValue] = useState(defaultValue);
 
   useEffect(() => {
-    const stickyValue = window.localStorage.getItem(key);
+    const stickyValue = window.sessionStorage.getItem(key);
 
     if (stickyValue !== null) {
       setValue(JSON.parse(stickyValue));
@@ -15,7 +15,7 @@ export function useLocalStorage<T = unknown>(
   }, [key]);
 
   useEffect(() => {
-    window.localStorage.setItem(key, JSON.stringify(value));
+    window.sessionStorage.setItem(key, JSON.stringify(value));
   }, [key, value]);
 
   return [value, setValue];
