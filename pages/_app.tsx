@@ -6,6 +6,7 @@ import { AppContext, AppInitialProps, AppProps } from 'next/app';
 import Router from 'next/router';
 import nprogress from 'nprogress';
 import { RecoilRoot } from 'recoil';
+import Title from 'components/Layout/Title';
 
 Router.events.on('routeChangeStart', () => {
   nprogress.start();
@@ -23,6 +24,7 @@ const _App: NextComponentType<AppContext, AppInitialProps, AppProps> = props => 
   const { Component, pageProps } = props;
   return (
     <RecoilRoot>
+      <Title></Title>
       <Component {...pageProps} />
     </RecoilRoot>
   );
