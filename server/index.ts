@@ -15,7 +15,7 @@ async function bootstrap() {
   try {
     await server.register(fastifyNextjs, { dev });
     useProxy(server);
-    server.listen(port, onStartHandler);
+    server.listen(port, '0.0.0.0', onStartHandler);
   } catch (err) {
     fatalErrorHandler(err);
   }
