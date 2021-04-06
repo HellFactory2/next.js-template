@@ -1,27 +1,30 @@
-import Chalk from 'chalk';
-
-const env = process.env.NODE_ENV || 'development';
+import chalk from 'chalk';
+import { env, port } from '.';
 
 const firstUppercase = (text: string) => {
   return text[0].toUpperCase() + text.slice(1).toLowerCase();
 };
 
-export const onStartSuccess: () => void = () => {
-  const url = `http://localhost:${process.env.SERVER_PORT || '3000'}`;
+export const onStartHandler = (err: Error) => {
+  if (err) {
+    fatalErrorHandler(err);
+  }
+  const url = `http://localhost:${port}`;
   console.log('');
-  console.log(Chalk.bold('Access URLs:'));
-  console.log(Chalk.gray('-------------------------------------'));
-  console.log(`${firstUppercase(env)}: ${Chalk.magentaBright(url)}`);
-  console.log(Chalk.gray('-------------------------------------'));
-  console.log(Chalk.blueBright(`Press ${Chalk.italic('CTRL+C')} to stop`));
+  console.log(chalk.bold('Access URLs:'));
+  console.log(chalk.gray('-------------------------------------'));
+  console.log(`${firstUppercase(env)}: ${chalk.magentaBright(url)}`);
+  console.log(chalk.gray('-------------------------------------'));
+  console.log(chalk.blueBright(`Press ${chalk.italic('CTRL+C')} to stop`));
   console.log('');
 };
 
-export const onStartError = (err: any) => {
+export const fatalErrorHandler = (err: any) => {
   console.log('');
-  console.log(Chalk.bold('Failed to start the server:'));
-  console.log(Chalk.gray('-------------------------------------'));
-  console.log(err);
-  console.log(Chalk.gray('-------------------------------------'));
+  console.log(chalk.bold(chalk.red('Fatal error:')));
+  console.log(chalk.gray('-------------------------------------'));
+  console.log(err.message || err);
+  console.log(chalk.gray('-------------------------------------'));
   console.log('');
+  process.exit(1);
 };

@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "nodemon",
+    "prebuild": "rimraf dist && rimraf .next",
     "build": "next build && tsc --project tsconfig.server.json",
     "build:docker": "docker build -t next.js-template .",
     "start": "cross-env NODE_ENV=production node dist/index.js",
@@ -11,17 +12,14 @@
     "stop:docker": "docker rm -f next.js-template && docker rmi next.js-template"
   },
   "dependencies": {
-    "axios": "latest",
-    "dotenv": "latest",
-    "express": "latest",
-    "http-proxy-middleware": "latest",
+    "fastify": "latest",
+    "fastify-http-proxy": "latest",
     "next": "latest",
     "nprogress": "latest",
     "recoil": "latest",
     "styled-components": "latest"
   },
   "devDependencies": {
-    "@types/express": "latest",
     "@types/node": "latest",
     "@types/nprogress": "latest",
     "@types/react": "latest",
@@ -34,6 +32,7 @@
     "postcss": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "rimraf": "latest",
     "sass": "latest",
     "tailwindcss": "latest",
     "ts-node": "latest",
