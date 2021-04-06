@@ -3,7 +3,7 @@ import proxy from 'fastify-http-proxy';
 
 const rules = [
   {
-    upstream: 'https://invez.ai/api',
+    upstream: '',
     prefix: '/api',
     rewritePrefix: '',
     http2: false,
@@ -12,6 +12,7 @@ const rules = [
 
 export default function (server: FastifyInstance) {
   for (const rule of rules) {
+    if (!rules) continue;
     server.register(proxy, rule);
   }
 }
