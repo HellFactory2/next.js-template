@@ -12,7 +12,7 @@ const rules = [
 
 export default function (server: FastifyInstance) {
   for (const rule of rules) {
-    if (!rules) continue;
+    if (!rule.upstream) continue;
     server.register(proxy, rule);
   }
 }
