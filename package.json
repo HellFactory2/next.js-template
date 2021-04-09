@@ -16,7 +16,9 @@
     "fastify-http-proxy": "latest",
     "next": "latest",
     "nprogress": "latest",
-    "recoil": "latest"
+    "recoil": "latest",
+    "sitemap": "^6.4.0",
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "@types/node": "latest",

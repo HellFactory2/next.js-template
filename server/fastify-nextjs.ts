@@ -1,12 +1,16 @@
 import { FastifyInstance, FastifyPluginOptions } from 'fastify';
 import next from 'next';
+import { createGzip } from 'zlib';
+import { SitemapStream, streamToPromise } from 'sitemap';
 
-export const fastifyNextjs = async (
+let sitemap: Buffer | undefined = undefined;
+
+export const fastifyNextjs = async function (
   fastify: FastifyInstance,
-  opts: FastifyPluginOptions & { dev: boolean },
+  opts: FastifyPluginOptions & { dev: boolean; hostname: string },
   done: (err?: Error) => void
-) => {
-  const { dev } = opts;
+) {
+  const { dev, hostname } = opts;
   const app = next({ dev });
   const handle = app.getRequestHandler();
 
@@ -19,6 +23,32 @@ export const fastifyNextjs = async (
           reply.sent = true;
         });
       }
+
+      fastify.get('/sitemap.xml', async (_, reply) => {
+        if (sitemap) {
+          reply.headers({
+            'Content-Type': 'application/xml',
+            'Content-Encoding': 'gzip',
+          });
+          return reply.send(sitemap);
+        }
+
+        try {
+          const stream = new SitemapStream({ hostname });
+          const pipeline = stream.pipe(createGzip());
+          stream.write({ url: '/', changefreq: 'monthly', priority: 1 });
+          streamToPromise(pipeline).then(sm => (sitemap = sm));
+          stream.end();
+          pipeline.pipe(reply.raw).on('error', e => {
+            throw e;
+          });
+          reply.raw.setHeader('Content-Type', 'application/xml');
+          reply.raw.setHeader('Content-Encoding', 'gzip');
+        } catch (error) {
+          console.error(error);
+          reply.code(500).send();
+        }
+      });
 
       fastify.all('/*', async (req, reply) => {
         await handle(req.raw, reply.raw);
