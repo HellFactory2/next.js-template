@@ -16,17 +16,14 @@
     "fastify-http-proxy": "latest",
     "next": "latest",
     "nprogress": "latest",
-    "recoil": "latest",
-    "styled-components": "latest"
+    "recoil": "latest"
   },
   "devDependencies": {
     "@types/node": "latest",
     "@types/nprogress": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "@types/styled-components": "latest",
     "autoprefixer": "latest",
-    "babel-plugin-styled-components": "latest",
     "cross-env": "latest",
     "nodemon": "latest",
     "postcss": "latest",
@@ -42,7 +39,7 @@
     "watch": [
       "server"
     ],
-    "exec": "ts-node --project tsconfig.server.json server/index.ts",
+    "exec": "clear && ts-node --project tsconfig.server.json server/index.ts",
     "ext": "js ts"
   },
   "prettier": {
@@ -79,14 +76,7 @@
         ]
       }
     },
-    "plugins": [
-      [
-        "styled-components",
-        {
-          "ssr": true
-        }
-      ]
-    ]
+    "plugins": []
   },
   "license": "MIT"
 }
