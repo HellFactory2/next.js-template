@@ -4,12 +4,10 @@ import { createGzip } from 'zlib';
 import { SitemapStream, streamToPromise } from 'sitemap';
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { hostname, useRobot as useRobot } from './load-env';
 
 let sitemap: Buffer | undefined = undefined;
 let robots: string | undefined = undefined;
-
-export const hostname = process.env.HOST_NAME || 'http://localhost/';
-export const useRobotTxt = process.env.USE_ROBOT_TXT;
 
 export const fastifyNextjs = function (
   fastify: FastifyInstance,
@@ -31,10 +29,9 @@ export const fastifyNextjs = function (
       }
 
       fastify.get('/robots.txt', async (_, reply) => {
-        if (!useRobotTxt) {
+        if (!useRobot) {
           return reply.type('text/plain').send('User-agent: *\nDisallow: /');
         }
-
         if (!robots) {
           robots = readFileSync(join(process.cwd(), '/public/robots.txt'), 'utf8');
         }

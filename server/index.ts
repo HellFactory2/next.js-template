@@ -1,14 +1,10 @@
-import './load-env';
+import { dev, port } from './load-env';
 import fastify from 'fastify';
 import { fatalErrorHandler, onStartHandler } from './event-handlers';
 import fastifyNextjs from './fastify-nextjs';
 import fastifyProxy from './fastify-proxy';
 
 const second = 1000;
-
-export const port = parseInt(process.env.PORT || '3000', 10);
-export const env = process.env.NODE_ENV || 'development';
-export const dev = env !== 'production';
 
 export const server = fastify({
   pluginTimeout: 60 * second,

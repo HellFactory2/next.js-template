@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { env, port } from '.';
+import { env, port } from './load-env';
 
 const firstUppercase = (text: string) => {
   return text[0].toUpperCase() + text.slice(1).toLowerCase();
