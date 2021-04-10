@@ -2,19 +2,25 @@ import { FastifyInstance, FastifyPluginOptions } from 'fastify';
 import next from 'next';
 import { createGzip } from 'zlib';
 import { SitemapStream, streamToPromise } from 'sitemap';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
 let sitemap: Buffer | undefined = undefined;
+let robots: string | undefined = undefined;
 
-export const fastifyNextjs = async function (
+export const hostname = process.env.HOST_NAME || 'http://localhost/';
+export const useRobotTxt = process.env.USE_ROBOT_TXT;
+
+export const fastifyNextjs = function (
   fastify: FastifyInstance,
-  opts: FastifyPluginOptions & { dev: boolean; hostname: string },
+  opts: FastifyPluginOptions & { dev: boolean },
   done: (err?: Error) => void
 ) {
-  const { dev, hostname } = opts;
+  const { dev } = opts;
   const app = next({ dev });
   const handle = app.getRequestHandler();
 
-  await app
+  app
     .prepare()
     .then(() => {
       if (dev) {
@@ -23,6 +29,17 @@ export const fastifyNextjs = async function (
           reply.sent = true;
         });
       }
+
+      fastify.get('/robots.txt', async (_, reply) => {
+        if (!useRobotTxt) {
+          return reply.type('text/plain').send('User-agent: *\nDisallow: /');
+        }
+
+        if (!robots) {
+          robots = readFileSync(join(process.cwd(), '/public/robots.txt'), 'utf8');
+        }
+        reply.type('text/plain').send(robots);
+      });
 
       fastify.get('/sitemap.xml', async (_, reply) => {
         if (sitemap) {
