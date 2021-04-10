@@ -12,14 +12,14 @@
     "stop:docker": "docker rm -f next.js-template && docker rmi next.js-template"
   },
   "dependencies": {
-    "dotenv": "^8.2.0",
+    "dotenv": "latest",
     "fastify": "latest",
     "fastify-http-proxy": "latest",
     "next": "latest",
     "nprogress": "latest",
     "recoil": "latest",
-    "sitemap": "^6.4.0",
-    "zlib": "^1.0.5"
+    "sitemap": "latest",
+    "zlib": "latest"
   },
   "devDependencies": {
     "@types/node": "latest",
