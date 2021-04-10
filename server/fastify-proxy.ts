@@ -21,3 +21,5 @@ export const fastifyProxy = function (
   }
   done();
 };
+
+export default fastifyProxy;

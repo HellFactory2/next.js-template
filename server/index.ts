@@ -1,8 +1,8 @@
 import './load-env';
 import fastify from 'fastify';
 import { fatalErrorHandler, onStartHandler } from './event-handlers';
-import { fastifyNextjs } from './fastify-nextjs';
-import { fastifyProxy } from './fastify-proxy';
+import fastifyNextjs from './fastify-nextjs';
+import fastifyProxy from './fastify-proxy';
 
 const second = 1000;
 

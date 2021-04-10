@@ -82,3 +82,5 @@ export const fastifyNextjs = function (
       done(err);
     });
 };
+
+export default fastifyNextjs;
