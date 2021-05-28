@@ -1,19 +1,30 @@
 import chalk from 'chalk';
-import { env, port } from './load-env';
-
-const firstUppercase = (text: string) => {
-  return text[0].toUpperCase() + text.slice(1).toLowerCase();
-};
+import { networkInterfaces } from 'os';
+import { port } from './load-env';
 
 export const onStartHandler = (err: Error) => {
-  if (err) {
+  const networks = networkInterfaces();
+  if (err || networks === undefined) {
     fatalErrorHandler(err);
   }
-  const url = `http://localhost:${port}`;
   console.log('');
   console.log(chalk.bold('Access URLs:'));
   console.log(chalk.gray('-------------------------------------'));
-  console.log(`${firstUppercase(env)}: ${chalk.magentaBright(url)}`);
+  for (const interfaceName of Object.keys(networks)) {
+    const networkInfo = networks[interfaceName];
+    if (!networkInfo) {
+      continue;
+    }
+    for (const info of networkInfo) {
+      const { address, family } = info;
+      if (!address || family !== 'IPv4') {
+        continue;
+      }
+      const url = chalk.magentaBright(`http://${address}:${port}`).replace('127.0.0.1', 'localhost');
+      const name = url.includes('localhost') ? 'Local' : interfaceName;
+      console.log(`${name}: ${url}`);
+    }
+  }
   console.log(chalk.gray('-------------------------------------'));
   console.log(chalk.blueBright(`Press ${chalk.italic('CTRL+C')} to stop`));
   console.log('');
