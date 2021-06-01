@@ -1,10 +1,10 @@
-FROM node:12 AS builder
+FROM node:12-alpine AS builder
 WORKDIR /app
 COPY . .
 RUN yarn --silent
 RUN yarn build
 
-FROM node:12 AS modules
+FROM node:12-alpine AS modules
 WORKDIR /app
 COPY ./package.json ./package.json
 RUN yarn --silent --production
