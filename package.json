@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "nodemon",
+    "format": "prettier --write **/*.{js,jsx,ts,tsx}",
     "prebuild": "rimraf dist && rimraf .next",
     "build": "next build && tsc --project tsconfig.server.json",
     "build:docker": "docker build -t next.js-template .",
@@ -37,6 +38,9 @@
     "tailwindcss": "latest",
     "ts-node": "latest",
     "typescript": "latest"
+  },
+  "optionalDependencies": {
+    "prettier": "^2.3.1"
   },
   "nodemonConfig": {
     "watch": [
