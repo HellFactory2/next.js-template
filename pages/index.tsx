@@ -1,38 +1,44 @@
-import { NextPage } from 'next';
-import { useRecoilState } from 'recoil';
-import { counterState } from 'recoil/counter';
+import DefaultLayout from 'components/Layout/DefaultLayout';
+import { useState } from 'react';
+import { Page } from 'types/page';
+import cn from 'utils/class-names';
 
-const IndexPage: NextPage = () => {
-  const [counter, setCounter] = useRecoilState(counterState);
+const IndexPage: Page = () => {
+  const [happy, setHappy] = useState(false);
 
-  const handleIncrease = () => {
-    setCounter(counter + 1);
-  };
-
-  const handleReset = () => {
-    setCounter(0);
-  };
+  if (happy) return <div className="text-9xl">😊</div>;
 
   return (
-    <main>
-      <div className="h-screen w-screen bg-white dark:bg-gray-700">
-        <div className="h-full px-5 py-8">
-          <div className="h-full max-w-sm flex flex-col justify-center items-center m-auto border-2 border-dashed rounded-lg text-lg select-none border-gray-300 dark:border-gray-500 dark:text-gray-200">
-            <div>Happy Coding!</div>
-            <div className="my-2">{counter}</div>
-            <div>
-              <button className="px-2 mr-1 border rounded bg-green-400" onClick={handleIncrease}>
-                Increase
-              </button>
-              <button className="px-2 border rounded bg-yellow-400" onClick={handleReset}>
-                Reset
-              </button>
-            </div>
-          </div>
-        </div>
+    <div
+      className={cn(
+        'bg-glass backdrop-filter backdrop-blur-lg',
+        {
+          'p-4': true,
+          'shadow-glass': 1,
+        },
+        ['border', 'border-white', 'border-opacity-10'],
+        'text-center rounded-lg'
+      )}
+    >
+      <div className="text-lg font-bold mb-4">Happy Coding</div>
+      <div>If your happy and you know it clap your hands.</div>
+      <div>If your happy and you know it clap your hands.</div>
+      <div>If your happy and you know it, then your face will surely show it.</div>
+      <div>If your happy and you know it clap your hands.</div>
+      <div className="mt-4">
+        <button
+          className="bg-blue-500 p-2 rounded text-white"
+          onClick={() => {
+            setHappy(true);
+          }}
+        >
+          Yes, I'm Happy
+        </button>
       </div>
-    </main>
+    </div>
   );
 };
+
+IndexPage.Layout = DefaultLayout;
 
 export default IndexPage;

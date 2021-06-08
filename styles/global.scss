@@ -1,5 +1,10 @@
 @import './nprogress.scss';
 
 body {
-  font-family: 'Prompt';
+  font-family: 'Roboto';
+  background: rgb(45, 106, 169);
+  background: -moz-linear-gradient(180deg, rgba(45, 106, 169, 1) 0%, rgba(25, 63, 102, 1) 100%);
+  background: -webkit-linear-gradient(180deg, rgba(45, 106, 169, 1) 0%, rgba(25, 63, 102, 1) 100%);
+  background: linear-gradient(180deg, rgba(45, 106, 169, 1) 0%, rgba(25, 63, 102, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2d6aa9",endColorstr="#193f66",GradientType=1);
 }

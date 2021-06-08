@@ -7,6 +7,7 @@ import Router from 'next/router';
 import nprogress from 'nprogress';
 import { RecoilRoot } from 'recoil';
 import Title from 'components/Layout/Title';
+import DefaultLayout from 'components/Layout/DefaultLayout';
 
 Router.events.on('routeChangeStart', () => {
   nprogress.start();
@@ -20,12 +21,17 @@ Router.events.on('routeChangeComplete', () => {
   nprogress.done();
 });
 
-const _App: NextComponentType<AppContext, AppInitialProps, AppProps> = props => {
+const _App: NextComponentType<AppContext, AppInitialProps, AppProps & { Component: { Layout: React.FC } }> = props => {
   const { Component, pageProps } = props;
+
+  const Layout = Component.Layout || DefaultLayout;
+
   return (
     <RecoilRoot>
-      <Title></Title>
-      <Component {...pageProps} />
+      <Layout>
+        <Title></Title>
+        <Component {...pageProps} />
+      </Layout>
     </RecoilRoot>
   );
 };

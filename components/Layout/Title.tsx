@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { niceName } from 'package.json';
+import pkg from 'package.json';
 import Head from 'next/head';
 
 export const Title: FunctionComponent = props => {
@@ -7,7 +7,7 @@ export const Title: FunctionComponent = props => {
     <Head>
       <title>
         {props.children ? props.children + ' - ' : ''}
-        {niceName}
+        {pkg.niceName}
       </title>
     </Head>
   );
