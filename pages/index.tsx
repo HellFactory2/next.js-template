@@ -27,7 +27,7 @@ const IndexPage: Page = () => {
       <div>If your happy and you know it clap your hands.</div>
       <div className="mt-4">
         <button
-          className="bg-blue-500 p-2 rounded text-white"
+          className="bg-blue-600 p-2 rounded text-white"
           onClick={() => {
             setHappy(true);
           }}
