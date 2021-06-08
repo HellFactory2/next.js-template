@@ -1,6 +1,4 @@
-import 'tailwindcss/tailwind.css';
 import 'styles/global.scss';
-
 import { NextComponentType } from 'next';
 import { AppContext, AppInitialProps, AppProps } from 'next/app';
 import Router from 'next/router';

@@ -1,12 +1,11 @@
 module.exports = {
-  purge: ['./pages/**/*.tsx', './components/**/*.tsx'],
+  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      backgroundColor: theme => ({
-        ...theme('colors'),
+      backgroundColor: {
         glass: 'rgba(255, 255, 255, 0.25)',
-      }),
+      },
       backgroundImage: {
         default: 'url(/img/bg-default.min.jpg)',
       },
