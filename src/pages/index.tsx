@@ -1,7 +1,7 @@
-import DefaultLayout from 'components/Layout/DefaultLayout';
+import DefaultLayout from 'src/components/Layout/DefaultLayout';
 import { useState } from 'react';
-import { Page } from 'types/page';
-import cn from 'utils/class-names';
+import { Page } from 'src/types/page';
+import cn from 'src/utils/class-names';
 
 const IndexPage: Page = () => {
   const [happy, setHappy] = useState(false);
@@ -32,7 +32,7 @@ const IndexPage: Page = () => {
             setHappy(true);
           }}
         >
-          Yes, I'm Happy
+          Yes, I&apos;m Happy
         </button>
       </div>
     </div>

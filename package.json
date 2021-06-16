@@ -1,10 +1,10 @@
 {
-  "name": "untitled",
+  "name": "next.js-template",
   "niceName": "ไม่ได้ตั้งชื่อ",
   "version": "0.0.1",
   "scripts": {
     "dev": "nodemon",
-    "format": "prettier --write **/*.{js,jsx,ts,tsx}",
+    "lint": "eslint ./**/*.{js,jsx,ts,tsx} --fix",
     "prebuild": "rimraf dist && rimraf .next",
     "build": "next build && tsc --project tsconfig.server.json",
     "build:docker": "docker build -t next.js-template .",
@@ -13,32 +13,36 @@
     "stop:docker": "docker rm -f next.js-template && docker rmi next.js-template"
   },
   "dependencies": {
-    "dotenv": "latest",
-    "fastify": "latest",
-    "fastify-http-proxy": "latest",
-    "next": "latest",
-    "nprogress": "latest",
-    "recoil": "latest",
-    "sitemap": "latest",
-    "zlib": "latest"
+    "dotenv": "^10.0.0",
+    "fastify": "^3.17.0",
+    "fastify-http-proxy": "^5.0.0",
+    "next": "^11.0.0",
+    "nprogress": "^0.2.0",
+    "recoil": "^0.3.1",
+    "sitemap": "^7.0.0",
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "@types/node": "latest",
-    "@types/nprogress": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "autoprefixer": "latest",
-    "cross-env": "latest",
-    "nodemon": "latest",
-    "postcss": "latest",
-    "prettier": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "rimraf": "latest",
-    "sass": "latest",
-    "tailwindcss": "latest",
-    "ts-node": "latest",
-    "typescript": "latest"
+    "@types/node": "^15.12.2",
+    "@types/nprogress": "^0.2.0",
+    "@types/react": "^17.0.11",
+    "@types/react-dom": "^17.0.7",
+    "autoprefixer": "^10.2.6",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.28.0",
+    "eslint-config-next": "^11.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "nodemon": "^2.0.7",
+    "postcss": "^8.3.4",
+    "prettier": "^2.3.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rimraf": "^3.0.2",
+    "sass": "^1.35.1",
+    "tailwindcss": "^2.1.4",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
   },
   "nodemonConfig": {
     "watch": [
@@ -46,15 +50,6 @@
     ],
     "exec": "clear && ts-node --project tsconfig.server.json server/index.ts",
     "ext": "js ts"
-  },
-  "prettier": {
-    "printWidth": 120,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5",
-    "arrowParens": "avoid",
-    "tabWidth": 2,
-    "useTabs": false
   },
   "babel": {
     "env": {

@@ -18,28 +18,28 @@ export const useWebSocket = <K extends keyof WebSocketEventMap>(
   const [ws, setWebSocket] = useState<WebSocket>();
   const [msg, setMessage] = useState<any>();
 
-  const connect = () => {
-    if (!$.ws) {
-      $.ws = new WebSocket(endpoint);
-      setWebSocket($.ws);
-    } else {
-      setWebSocket($.ws);
-    }
-
-    $.ws.addEventListener('message', function (ev) {
-      setMessage(ev.data);
-    });
-
-    $.ws.addEventListener('error', function (_ev) {
-      $.ws.close();
-    });
-
-    $.ws.addEventListener('close', function (_ev) {
-      connect();
-    });
-  };
-
   useEffect(() => {
+    const connect = () => {
+      if (!$.ws) {
+        $.ws = new WebSocket(endpoint);
+        setWebSocket($.ws);
+      } else {
+        setWebSocket($.ws);
+      }
+
+      $.ws.addEventListener('message', function (ev) {
+        setMessage(ev.data);
+      });
+
+      $.ws.addEventListener('error', function (_ev) {
+        $.ws.close();
+      });
+
+      $.ws.addEventListener('close', function (_ev) {
+        connect();
+      });
+    };
+
     connect();
 
     return () => {};

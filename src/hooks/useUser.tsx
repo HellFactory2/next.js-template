@@ -10,12 +10,11 @@ export const useUser = () => {
 
   useEffect(() => {
     if (user) return;
-
     // fetch user data
     setUser({
       username: 'username',
     });
-  }, []);
+  }, [setUser, user]);
 
   return {
     user,

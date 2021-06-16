@@ -1,11 +1,11 @@
-import 'styles/global.scss';
+import 'src/styles/global.scss';
 import { NextComponentType } from 'next';
 import { AppContext, AppInitialProps, AppProps } from 'next/app';
 import Router from 'next/router';
 import nprogress from 'nprogress';
 import { RecoilRoot } from 'recoil';
-import Title from 'components/Layout/Title';
-import DefaultLayout from 'components/Layout/DefaultLayout';
+import Title from 'src/components/Layout/Title';
+import DefaultLayout from 'src/components/Layout/DefaultLayout';
 import { useEffect } from 'react';
 
 Router.events.on('routeChangeStart', () => {
